@@ -19,3 +19,28 @@
 		git push
 	- save
 2) On commit the code pushes to the github
+
+
+#############	START JENKINS #############
+1) from redhat
+	- systemctl start jenkins
+2) turn all the firewall off
+	- systemctl stop firewalld
+	- systemctl disable firewalld
+	- setenforce 0
+
+#############	JOB CREATION ON JENKINS #############
+
+1) To build the trigger on commit
+In the post-commit file add the command
+	- curl --user "username:password" trigger_url
+
+2) command to copy files & create docker
+
+sudo cp * dir_name
+
+if sudo docker ps | grep container_name
+then
+echo "already running"
+else sudo docker run -dit -v dir_name:image_dir_name -p 8084:80 
+fi
